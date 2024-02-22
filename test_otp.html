@@ -1,0 +1,126 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        } 
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+ 
+ 
+
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .otp-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OTP Generator</h1>
+        <div class="otp-display" id="otpTitle">Click "Generate OTP" to get your OTP</div>
+        <button id="generateButton">Generate OTP</button>
+        <form id="otpForm">
+            <label for="otpInput">Enter OTP:</label>
+            <input type="text" id="otpInput" name="otpInput" required>
+            <input type="submit" value="Submit">
+        </form>
+    
+    </div>
+
+    <script>
+        document.getElementById("generateButton").addEventListener("click", function() {
+        let x = Math.random();
+            x = x * 10000;
+            let otp = Math.floor(x);
+            console.log(otp, '-----------otp---------')
+            document.getElementById("otpTitle").textContent = "Your OTP is: " + otp;
+            document.getElementById("otpInput").value = ""; // Clear any previous input
+        });
+
+        document.getElementById("otpForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            let inputOTP = document.getElementById("otpInput").value.trim();
+            let generatedOTP = document.getElementById("otpTitle").textContent.split(": ")[1].trim();
+            console.log(generatedOTP, '----------------genrrate otp --------------- debug kar ke dekha karo')
+            if (inputOTP === generatedOTP) {
+                alert("OTP Verification Successful!");
+            } else {
+                alert("OTP Verification Failed! Please try again.");
+            }
+        });
+        
+      
+    
+        
+    </script>
+</body>
+</html>
+
